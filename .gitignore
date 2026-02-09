@@ -1,0 +1,22 @@
+# Python virtual environments  
+.venv/  
+__pycache__/  
+*.py[cod]  
+*.egg-info/  
+  
+# UV/pip files  
+uv.lock  
+pip-wheel-metadata/  
+  
+# Project-specific ignores  
+output/*  # Ignore generated outputs (add !output/.gitkeep if you want to keep the folder in Git)  
+pickles/*  # Ignore pickle files (sensitive data; add !pickles/.gitkeep if needed)  
+templates/*  # Ignore templates if they contain proprietary data; add !templates/.gitkeep if needed  
+  
+# OS-specific  
+.DS_Store  
+Thumbs.db  
+  
+# Misc  
+*.log  
+*.tmp  
