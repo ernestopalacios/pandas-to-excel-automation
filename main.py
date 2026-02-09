@@ -21,6 +21,19 @@ def main():
     
     # Load Pandas DataFrame from pickle
     df = pd.read_pickle(pickle_path)
+    df['uuid'] = df['uuid'].astype(str)
+
+    # Calculate column 'Duracion'
+    df['Duracion'] = df.apply(
+        lambda row: (pd.to_datetime(row['FinEvento']) - pd.to_datetime(row['InicioEvento'])).total_seconds() / 60,
+        axis=1
+    )
+    df['Duracion'] = df['Duracion'].round(0).astype(int).astype(str)
+    cols = df.columns.tolist()
+    duracion_index = cols.index('Duracion')  # Find where we temporarily added it
+    cols.insert(15, cols.pop(duracion_index))  # Move it to position 14
+    df = df[cols]
+
     print(f"Loaded DataFrame with {len(df)} rows")
     
     # Load the copied workbook
